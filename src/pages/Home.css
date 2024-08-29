@@ -1,0 +1,24 @@
+.home__Slider {
+    min-height: 100vh;
+    /* min-width: 100%; */
+    min-width: calc(100vw - 80px);
+    /* min-width: -webkit-calc(100vw - 80px); */
+    /* margin-left: 80px; */
+    /* overflow: hidden; */
+}
+
+.mobile {
+    min-width: 100vw !important;
+}
+
+.home__Sidebar {
+    min-height: 100vh;
+    width: 80px;
+    /* margin-left: 80px; */
+}
+
+.home__wrapper {
+    display: flex;
+    min-height: 100vh;
+    max-width: 100vw;
+}

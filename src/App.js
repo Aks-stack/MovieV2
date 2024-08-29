@@ -1,56 +1,79 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { useEffect } from 'react';
 import './App.css';
+import {
+  BrowserRouter as
+    Router, Routes, Route
+} from "react-router-dom";
+import Home from './pages/Home';
+import Nav from './components/Nav';
+import { useDispatch } from 'react-redux';
+import { setIsMobileFalse, setIsMobileTrue, setage } from './features/isMobileSlice';
+import Explore from './pages/Explore';
+// import Sidebar from './components/Sidebar';
 
 function App() {
+
+  // const [isMobile, setIsMobile] = useState(false);
+  const dispatch = useDispatch();
+  // const isMobile = useSelector(selectisMobile);
+  // console.log(isMobile);
+
+  // const handleResize = () => {
+  //   if (window.innerWidth < 700) {
+  //       setIsMobile(true)
+  //       // dispatch(setIsMobileTrue());
+  //   } else {
+  //       setIsMobile(false)
+  //       // dispatch(setIsMobileFalse());
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // });
+
+  useEffect(() => {
+    const handleInitialResize = () => {
+      if (window.innerWidth < 700) {
+        // setIsMobile(true);
+        dispatch(setIsMobileTrue()); // Update Redux state 
+      } else {
+        // setIsMobile(false);
+        dispatch(setIsMobileFalse()); // Update Redux state 
+      }
+    };
+
+    handleInitialResize();
+  }, [dispatch]); // Add dispatch as a dependency to ensure recalculation on store changes
+
+  // Event listener for subsequent window resizes
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 700) {
+        dispatch(setIsMobileTrue());
+      } else {
+        dispatch(setIsMobileFalse());
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [dispatch]);
+  dispatch(setage(12));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <Router>
+        <Nav />
+        {/* { !isMobile && <Sidebar/>} */}
+        <Routes>
+          <Route index element={<Home />}></Route>
+          <Route path="explore" element={<Explore/>}></Route>
+          <Route path="explore/:genre" element={<Explore/>}></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }

@@ -1,0 +1,42 @@
+.Bottom--main {
+    min-width: 100vw;
+    position: fixed;
+    bottom: 0;
+    height: 8%;
+    z-index: 300;
+    background: rgb(249,244,241);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    /* color: purple; */
+    backdrop-filter: blur(5.6px);
+
+}
+
+.bottom--links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.bottom--icons {
+    color: grey;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.bottom--icons--active {
+    background: black;
+    color: white;
+}
+
+.bottom--icons:hover {
+    background: black;
+    color: white;
+    transform: scale(1.1);
+    transition: transform 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}

@@ -1,0 +1,41 @@
+.card__Main {
+    width: 170px;
+    border-radius: 10px;
+    transition: all 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    cursor: pointer;
+    margin-top: 10px;
+    /* filter: grayscale(1); */
+    /* margin-left: 90px; */
+}
+
+.card__content {
+    width: inherit;
+    transition: all 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.card__Main:hover {
+    background: rgb(59, 50, 68);
+}
+
+.card__content:hover {
+    scale: 0.9;
+    color: white;
+}
+
+.card__image {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+    /* object-fit: cover; */
+}
+
+.card__Title {
+    font-weight: 600;
+    text-align: left;
+}
+
+.card__Type {
+    font-weight: 500;
+    text-align: left;
+    color: darkgray;
+}
